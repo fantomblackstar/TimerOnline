@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <link rel="stylesheet" href="styleTimer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <div class="header__body  container">
+                <a class="header__link_active" href='/'>Timer</a>
+                <a class="header__link" href='#'>Stopwatch</a>
+        </div>
+    </div>
+    <div class="container main">
+        <div class="timer" data-timerid="1">
+            <div class="timer__info">
+                <div class="timer__name">TIMER 1</div>
+                <a href="#" data-timerid="1" class="timer__button-edit"><img class="timer__img_size_small" src="img/edit_pencil.png" alt=""> Edit Timer</a>
+            </div>
+            <div class="dial timer__dial">
+                <div class="dial__num1">00:</div>
+                <div class="dial__num2">01:</div>
+                <div class="dial__num3">00.</div>
+                <div class="dial__num4_small">00</div>
+            </div>
+            <div class="timer__controll">
+                <button class="timer__button_start button">Start</button>
+                <button class="timer__button_reset button">Reset</button>
+            </div>
+        </div>
+    </div>
+    <p class="add-timer">+ Add new timer</p>
+    <p class="error-text"></p>
+    <div class="modal-wrap hide">
+    </div>
+    <div class="modal-window hide">
+        <header class="modal-window__header">Edit Timer
+            <span class="modal-window__button-close"></span>
+        </header>
+        <p>Timer Time</p>
+        <div class="set-time">
+            <div class="set-time__group">
+                <input min="0" type="number" placeholder="00" class="set-time__input input-hrs">
+                <label for="" class="set-time__label">Hrs</label>
+            </div>
+            <div class="set-time__group">
+                <input min="0" max="59" type="number" placeholder="00" class="set-time__input input-min">
+                <label for="" class="set-time__label">Min</label>
+            </div>
+            <div class="set-time__group">
+                <input min="0" max="59" type="number" placeholder="00" class="set-time__input input-sec">
+                <label for="" class="set-time__label">Sec</label>
+            </div>
+        </div>
+        <div class="modal-window__group">
+            <label for="input-name" class="modal-window__label">Timer Name:</label>
+            <input type="text" name="input-name" class="input modal-window__input">
+        </div>
+        <div class="modal-window__group">
+            <label for="input-alarm" class="modal-window__label">Timer Alarm:</label>
+           <select name="select-alarm" class="select">
+            <option class="select__option" value="alarm1" >Beatiful spring melody</option>
+               <option class="select__option" value="alarm2">Morning</option>
+               <option class="select__option" value="alarm3" >Load alarm clock</option>
+               <option class="select__option" value="alarm4" >Nice alarm</option>
+               <option class="select__option" value="alarm5" >Fantasy</option>
+           </select>
+           <span class="select__img_play" data-playing='false'></span>
+           
+        </div>
+        <footer class="modal-window__footer">
+            <button class="button modal-window__button btn-delete">Delete timer</button>
+            <button class="button modal-window__button btn-submit">Done</button>
+        </footer>
+       
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
