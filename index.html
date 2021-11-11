@@ -29,7 +29,7 @@
                 <div class="dial__num1">00:</div>
                 <div class="dial__num2">01:</div>
                 <div class="dial__num3">00.</div>
-                <div class="dial__num4_small">00</div>
+                <div class="dial__num4_small">0</div>
             </div>
             <div class="timer__controll">
                 <button class="timer__button_start button">Start</button>
@@ -38,7 +38,7 @@
         </div>
     </div>
     <p class="add-timer">+ Add new timer</p>
-    <p class="error-text"></p>
+    <p class="error-text hide">*You can't create more than 3 timers</p>
     <div class="modal-wrap hide">
     </div>
     <div class="modal-window hide">
@@ -74,13 +74,12 @@
                <option class="select__option" value="alarm5" >Fantasy</option>
            </select>
            <span class="select__img_play" data-playing='false'></span>
-           
         </div>
         <footer class="modal-window__footer">
             <button class="button modal-window__button btn-delete">Delete timer</button>
             <button class="button modal-window__button btn-submit">Done</button>
+            <p class="modal-window__error-text hide"></p>
         </footer>
-       
     </div>
     <script src="script.js"></script>
 </body>
