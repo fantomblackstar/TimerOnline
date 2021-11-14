@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styleTimer.css">
+    <link rel="stylesheet" href="css/styleStopwatch.css">
+</head>
+
+<body>
+    <script defer src="script2.js"></script>
+    <div class="header">
+        <div class="header__body  container">
+            <a class="header__link" href='index.html'>Timer</a>
+            <a class="header__link_active" href='/'>Stopwatch</a>
+        </div>
+    </div>
+    <div class="container stopwatch">
+        <p class="stopwatch__name">Stopwatch</p>
+        <div class="dial">
+            <div class="dial__num1"></div>
+            <div class="dial__num2">00:</div>
+            <div class="dial__num3">00.</div>
+            <div class="dial__num4_small">0</div>
+        </div>
+        <div class="stopwatch__controll">
+            <button class="stopwatch__button_start button">Start</button>
+            <button class="stopwatch__button_split button">Split</button>
+            <button class="stopwatch__button_reset button">Reset</button>
+        </div>
+        <table class="stopwatch__split-list hide table">
+            <thead class="table__header">
+                <tr>
+                    <td>Lap</td>
+                    <td>Lap Time</td>
+                    <td>Total</td>
+                </tr>
+            </thead>
+            <tbody class="table__body">
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

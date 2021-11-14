@@ -2,7 +2,6 @@ const editBtn = document.querySelector('.timer__button-edit').onclick = showModa
 const modalWrap = document.querySelector('.modal-wrap');
 const modalWindow = document.querySelector('.modal-window');
 
-
 let timerObj = {
     1: {
         name: 'Timer 1',
@@ -11,7 +10,6 @@ let timerObj = {
         timeNow: '00:01:00:0',
     },
 }
-
 
 function showModal() {
     const timerId = this.dataset.timerid;
@@ -27,7 +25,6 @@ document.querySelector('.modal-window .btn-submit').onclick = function () {
         toggleModal();
     }
 }
-
 
 document.querySelector('.modal-window__button-close').onclick = () => toggleModal();
 document.querySelector('.modal-wrap').onclick = () => toggleModal();
@@ -45,6 +42,7 @@ function toggleModal() {
 function setTimerInfo(timerId) {
     let name = document.querySelector(`.timer[data-timerid='${timerId}'] .timer__name`);
     let dialNums = document.querySelector(`.timer[data-timerid='${timerId}'] .timer__dial`).children;
+  
     let hrs = dialNums[0];
     let min = dialNums[1];
     let sec = dialNums[2];
@@ -80,7 +78,6 @@ function setModalInfo(timerId) {
         elem.selected = false;
     })
     modalAlarm.selected = true;
-
     
     let pauseBtn = document.querySelector(`.timer[data-timerid='${timerId}'] .timer__button_pause`);
     if (pauseBtn) {
@@ -112,14 +109,12 @@ function getModalInfo(timerId) {
         setTimeout(() => modalErrorText.classList.add('hide'), 2000);
         return false;
     }
-
-
-    timerObj[timerId].time = timerObj[timerId].timeNow = `${hrs}:${min}:${sec}:0`;
+    timerObj[timerId].time = `${hrs}:${min}:${sec}`;
+    timerObj[timerId].timeNow = `${hrs}:${min}:${sec}:0`;
     timerObj[timerId].name = modalName.value;
 
     return true;
 }
-
 
 let alarmSound;
 const btnPlayAlarm = document.querySelector('.select__img_play');
@@ -144,12 +139,7 @@ btnPlayAlarm.onclick = () => {
         alarmSound.pause();
         btnPlayAlarm.dataset.playing = 'false';
     }
-
-
 }
-
-// delete alarm
-
 
 document.querySelector('.modal-window .btn-delete').onclick = function () {
     const timerId = +this.dataset.timerid;
@@ -165,11 +155,8 @@ document.querySelector('.modal-window .btn-delete').onclick = function () {
 
     document.querySelector(`.timer[data-timerid="${timerId}"]`).remove();
     delete timerObj[timerId].alarm;
-
     toggleModal();
 }
-
-// create new timer
 
 document.querySelector('.add-timer').onclick = () => {
     let timerId = document.querySelectorAll('.timer').length + 1;
@@ -181,8 +168,8 @@ document.querySelector('.add-timer').onclick = () => {
         }, 3 * 1000)
         return;
     }
-    if(document.querySelector(`.timer[data-timerid='${timerId - 1}'] .timer__button_start`).style.opacity === '0.5'){
-        let resetBtn = document.querySelector(`.timer[data-timerid='${timerId-1}'] .timer__button_reset`);
+    if(document.querySelector(`.timer[data-timerid='1'] .timer__button_start`).style.opacity === '0.5'){
+        let resetBtn = document.querySelector(`.timer[data-timerid='1'] .timer__button_reset`);
         stopAlarmTimeOut.call(resetBtn);
     }
 
@@ -196,21 +183,18 @@ document.querySelector('.add-timer').onclick = () => {
     newTimer.children[1].children[2].textContent = '00.';
     newTimer.children[1].children[3].textContent = '0';
 
-
     timerObj[timerId] = {
         name: `Timer ${timerId}`,
         alarm: 'alarm1',
         time: '00:01:00',
         timeNow: '00:01:00:0',
     }
-
     const btnStartTimer = newTimer.children[2].children[0];
     const btnResetTimer = newTimer.children[2].children[1];
-
-    if (btnStartTimer.classList[0] !== 'timer__button_start') {
+   
+    if (btnStartTimer.textContent === 'Pause') {
         btnStartTimer.textContent = 'Start';
         btnStartTimer.classList.remove('timer__button_pause');
-        btnStartTimer.classList.add('timer__button_start');
     }
 
     btnStartTimer.addEventListener('click', startTimer);
@@ -219,14 +203,11 @@ document.querySelector('.add-timer').onclick = () => {
     document.querySelector('.main').append(newTimer);
 }
 
-// start timer 
-
 document.querySelector('.timer__button_start').onclick = startTimer;
 
 function startTimer() {
     if (this.textContent == 'Pause') return;
     this.classList.add('timer__button_pause');
-    this.classList.remove('timer__button_start');
     this.textContent = 'Pause';
     this.removeEventListener('click', startTimer);
     this.addEventListener('click', pauseTimer);
@@ -237,7 +218,6 @@ function startTimer() {
 }
 
 function pauseTimer() {
-    this.classList.add('timer__button_start');
     this.classList.remove('timer__button_pause');
     this.textContent = 'Start';
     this.removeEventListener('click', pauseTimer);
@@ -285,11 +265,8 @@ function tick(timerId) {
     timerDial[1].textContent = min = min.toString().padStart(2, '0') + ':';
     timerDial[2].textContent = sec.toString().padStart(2, '0') + '.';
     timerDial[3].textContent = miliSec;
-
     timerObj[timerId].timeNow = hours + min + sec.toString().padStart(2, '0') + ':' + miliSec;
 }
-
-// reset timer 
 
 document.querySelector('.timer__button_reset').onclick = resetTimer;
 
@@ -305,20 +282,23 @@ function resetTimer() {
         else {
             clearInterval(timerObj[timerId].clearInterval);
         }
-       
     }
 }
 
 function timerTimeOut(timerId) {
-    console.log(timerId);
+    clearInterval(timerObj[timerId].intervalId)
     let timerDial = document.querySelector(`.timer[data-timerid='${timerId}'] .timer__dial`);
     timerDial.style.color = '#c70e00';
-    let startBtn = document.querySelector(`.timer[data-timerid='${timerId}'] .timer__button_pause`);
-    pauseTimer.call(startBtn);
+    let startBtn = document.querySelector(`.timer[data-timerid='${timerId}'] .timer__button_start`);
+    startBtn.removeEventListener('click', pauseTimer);
     startBtn.style.opacity = '.5';
-    startBtn.style.zIndex = '-5';
-    alarmSound = new Audio(`alarm/${timerObj[timerId].alarm}.mp3`);
-    alarmSound.play();
+    startBtn.style.cursor = 'not-allowed';
+
+    if(typeof alarmSound === 'undefined' || alarmSound.paused){
+        alarmSound = new Audio(`alarm/${timerObj[timerId].alarm}.mp3`);
+        alarmSound.play();
+    }
+
     let resetBtn = document.querySelector(`.timer[data-timerid='${timerId}'] .timer__button_reset`);
     resetBtn.addEventListener('click', stopAlarmTimeOut);
     resetBtn.removeEventListener('click', resetTimer);
@@ -332,10 +312,14 @@ function stopAlarmTimeOut(){
     resetBtn.addEventListener('click', resetTimer);
     resetBtn.removeEventListener('click', stopAlarmTimeOut);
     let timerDial = document.querySelector(`.timer[data-timerid='${timerId}'] .timer__dial`);
+    timerDial.style.color = 'white';
+
     let startBtn = document.querySelector(`.timer[data-timerid='${timerId}'] .timer__button_start`);
-    timerDial.style.color = 'black';
+    startBtn.addEventListener('click', startTimer);
     startBtn.style.opacity = '1';
-    startBtn.style.zIndex = '1';
+    startBtn.textContent = 'Start'
+    startBtn.style.cursor = 'pointer';
+    startBtn.classList.remove('timer__button_pause');
     timerObj[timerId].timeNow = timerObj[timerId].time + ':0';
     setTimerInfo(timerId);
 }

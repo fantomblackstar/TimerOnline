@@ -6,24 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timer</title>
-    <link rel="stylesheet" href="styleTimer.css">
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="css/styleTimer.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <script defer src="script.js"></script>
     <div class="header">
         <div class="header__body  container">
-                <a class="header__link_active" href='/'>Timer</a>
-                <a class="header__link" href='#'>Stopwatch</a>
+            <a class="header__link_active" href='/'>Timer</a>
+            <a class="header__link" href='stopwatch.html'>Stopwatch</a>
         </div>
     </div>
     <div class="container main">
         <div class="timer" data-timerid="1">
             <div class="timer__info">
                 <div class="timer__name">TIMER 1</div>
-                <a href="#" data-timerid="1" class="timer__button-edit"><img class="timer__img_size_small" src="img/edit_pencil.png" alt=""> Edit Timer</a>
+                <a href="#" data-timerid="1" class="timer__button-edit"><img class="timer__img_size_small"
+                        src="img/edit_pencil.png" alt=""> Edit Timer</a>
             </div>
             <div class="dial timer__dial">
                 <div class="dial__num1">00:</div>
@@ -66,14 +69,15 @@
         </div>
         <div class="modal-window__group">
             <label for="input-alarm" class="modal-window__label">Timer Alarm:</label>
-           <select name="select-alarm" class="select">
-            <option class="select__option" value="alarm1" >Beatiful spring melody</option>
-               <option class="select__option" value="alarm2">Morning</option>
-               <option class="select__option" value="alarm3" >Load alarm clock</option>
-               <option class="select__option" value="alarm4" >Nice alarm</option>
-               <option class="select__option" value="alarm5" >Fantasy</option>
-           </select>
-           <span class="select__img_play" data-playing='false'></span>
+            <select name="select-alarm" class="select">
+                <option class="select__option" value="alarm1">Beatiful spring melody</option>
+                <option class="select__option" value="alarm2">Morning</option>
+                <option class="select__option" value="alarm3">Load alarm clock</option>
+                <option class="select__option" value="alarm4">Nice alarm</option>
+                <option class="select__option" value="alarm5">Fantasy</option>
+            </select>
+            <span class="select__img_play" data-playing='false'
+                style="background-image: url('img/soundon.png');"></span>
         </div>
         <footer class="modal-window__footer">
             <button class="button modal-window__button btn-delete">Delete timer</button>
@@ -81,7 +85,6 @@
             <p class="modal-window__error-text hide"></p>
         </footer>
     </div>
-    <script src="script.js"></script>
 </body>
 
 </html>

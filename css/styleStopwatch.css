@@ -1,0 +1,90 @@
+html, .body {
+    position: relative;
+    font-size: 16px;
+    
+}
+
+.stopwatch {
+    position: relative;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.stopwatch .dial__num2 {
+    margin-left: 60px;
+}
+
+.stopwatch__name {
+    font-size: 2rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-transform: uppercase;
+}
+
+.stopwatch__controll {
+    margin-top: 20px;
+}
+
+.stopwatch__button_start {
+    background-color: rgb(34, 204, 34);
+}
+
+.stopwatch__button_pause {
+    background-color: rgb(255, 88, 88);
+}
+
+.stopwatch__button_split {
+    opacity: .6;
+    cursor: not-allowed;
+    background-color: #ffa011;
+}
+
+.stopwatch__button_reset {
+    opacity: .6;
+    cursor: not-allowed;
+    background-color: rgb(110, 144, 255);
+}
+
+.table {
+    table-layout: fixed;
+    width: auto;
+    width: 400px;
+    border-collapse: collapse;
+    text-align: left;
+    margin: 20px auto;
+    position: relative;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.table__header {
+    border-bottom: 2px solid grey;
+}
+
+td {
+    letter-spacing: 1px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+thead td:nth-child(1) {
+    width: 30%;
+}
+
+thead td:nth-child(2) {
+    width: 45%;
+    color: #ffa011;
+    text-shadow: 1px 1px 1px black;
+}
+
+thead td:nth-child(3) {
+    width: 25%;
+}
+
+@media (max-width:767px){
+    .stopwatch .dial__num2 {
+        margin-left: 0px;
+    }
+
+    .table {
+        width: 90%;
+    }
+}
