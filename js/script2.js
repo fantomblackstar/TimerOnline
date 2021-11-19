@@ -8,7 +8,6 @@ const dialNums = document.querySelector('.stopwatch .dial').children;
 const splitList = document.querySelector('.stopwatch__split-list');
 let lastSplitTime = '';
 
-
 btnStart.addEventListener('click', startStopwatch);
 
 function startStopwatch() {
@@ -16,12 +15,10 @@ function startStopwatch() {
     btnStart.addEventListener('click', pauseStopwatch);
     btnStart.textContent = 'Pause';
     btnStart.classList.add('stopwatch__button_pause');
-
     btnSplit.style.opacity = '1';
     btnSplit.style.cursor = 'pointer';
     btnReset.style.opacity = '0.6';
     btnReset.style.opacity = 'not-allowed'
-
     btnSplit.addEventListener('click', splitStopwatch);
     intervalId = setInterval(tick, 100);
 }
@@ -32,11 +29,9 @@ function pauseStopwatch() {
     btnStart.removeEventListener('click', pauseStopwatch);
     btnStart.textContent = 'Start';
     btnStart.classList.remove('stopwatch__button_pause');
-
     btnSplit.style.opacity = '0.6'
     btnSplit.style.cursor = 'not-allowed';
     btnSplit.removeEventListener('click', splitStopwatch);
-
     btnReset.style.opacity = '1';
     btnReset.style.cursor = 'pointer'
     btnReset.addEventListener('click', resetStopwatch);
@@ -51,7 +46,6 @@ function resetStopwatch() {
     btnStart.removeEventListener('click', pauseStopwatch);
     btnStart.textContent = 'Start';
     btnStart.classList.remove('stopwatch__button_pause');
-
     btnSplit.style.opacity = btnReset.style.opacity = '0.6'
     btnSplit.style.cursor = btnReset.style.cursor = 'not-allowed';
     btnReset.removeEventListener('click', resetStopwatch);
@@ -62,7 +56,7 @@ function resetStopwatch() {
 function splitStopwatch() {
     splitList.classList.remove('hide');
     const tableBody = splitList.children[1];
-   let lapIndex = tableBody.children.length + 1;
+    let lapIndex = tableBody.children.length + 1;
     let splitTime = timeNow.substring(0, timeNow.length-2);
 
     let row = tableBody.insertRow(-1);
@@ -77,8 +71,6 @@ function splitStopwatch() {
     else {
         let [hours1 , min1 , sec1] = splitTime.split(':').map(elem => +elem); 
         let [hours2 , min2 , sec2] = lastSplitTime.split(':').map(elem => +elem); 
-        console.log(hours1, min1 , sec1 );
-        console.log(hours2 , min2 , sec2);
         if(sec1 < sec2){
             if(min1 < min2){
                 hours1 -= hours2 - 1;
@@ -105,7 +97,6 @@ function splitStopwatch() {
         console.log('');
         cell2.textContent = `${hours1}:${min1}:${sec1}`;
     }
-
     cell3.textContent = splitTime;
     lastSplitTime = splitTime;
 }
