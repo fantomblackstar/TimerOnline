@@ -1,3 +1,6 @@
 Hello!
+This project contains timer and stopwatch that you can use
 
-This project isn`t finished yet!!! I'm working on it )
+*****************************************************
+
+You can see result of this project on -> timeronline.surge.sh )
